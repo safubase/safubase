@@ -27,4 +27,6 @@ class Safubase {
 
 // Service binds
 
+Safubase.prototype.getTokenInfo = services.getTokenInfo;
+
 export default Safubase;

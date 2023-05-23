@@ -71,32 +71,44 @@ After your dependency is added, you simply need to initialize safubase with clas
 const service = new Safubase();
 ```
 
-## 4. Using services and utils
+## 2. Initialize Safubase
 
-There are some utility functions which can help you build your dex even more quicker,
+After your dependency is added, you simply need to initialize safubase with class initialization:
+
+```javascript
+const service = new Safubase();
+```
+
+## 3. Using services and utils
+
+The most popular service function is getTokenInfo to get the security properties of the contract
+
+```javascript
+// ...
+
+// This will initialize and configure the current Web3 wallet.
+const data = await service.getTokenInfo(
+  '0xefb47f964454ed95e5604600ea68aeb738b3ba72',
+  '56'
+);
+
+if (data.code) {
+  // Something went wrong if there is code in response
+  console.log(data);
+
+  return;
+}
+
+console.log(data.is_anti_whale); // '1' || '0'
+
+console.log(data.score); // security score of the token out of 100
+```
+
+There are some utility functions which can help you build your security app even more quicker,
 
 ```javascript
 // ...
 
 // This will initialize and configure the current Web3 wallet.
 service.utils.connectWallet({ chainId: 56 });
-
-// This will create an allowance based on your params on your web3 wallet for the desired token.
-service.setAllowance({
-  ownerAddress: '0x123', // your web3 wallet address
-  sellTokenAddress: '0x3019bf2a2ef8040c242c9a4c5c4bd4c81678b2a1', // token address to create allowance for
-});
-```
-
-## 6. Signin current Web3 wallet
-
-```javascript
-// ...
-
-// You can use these data pieces to save the users wallet credentials when signed
-const { message, signature } = await service.sign({
-  address: '0x66E5869be1309a543A752aA24CfA251E86234fcc',
-  domain: 'quontral.com',
-  uri: 'https://app.quontral.com',
-});
 ```
