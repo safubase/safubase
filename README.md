@@ -86,7 +86,7 @@ The most popular service function is getTokenInfo to get the security properties
 ```javascript
 // ...
 
-// This will initialize and configure the current Web3 wallet.
+// This will fetch all the information related to that token address specified in the first paramater
 const data = await service.getTokenInfo(
   '0xefb47f964454ed95e5604600ea68aeb738b3ba72',
   '56'
